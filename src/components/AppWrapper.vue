@@ -1,11 +1,17 @@
 <script>
 
+import { store } from '../data/store';
 import AppCard from './AppCard.vue';
 
 export default {
   name: 'AppWrapper',
   components: {
     AppCard
+  },
+  data() {
+    return {
+      store
+    }
   }
 }
 </script>
@@ -14,7 +20,12 @@ export default {
 
 <div class="container">
 
-  <AppCard />
+  <ul>
+    <AppCard
+      v-for="movie in store.reqestedResult"
+      :key="movie.id"
+      :movie="movie"/>
+  </ul>
   
 </div>
   
