@@ -1,0 +1,16 @@
+@mixin flex($type: 'only') {
+
+  display: flex;
+  
+  @if $type == 'center-between' {
+
+    justify-content: space-between;
+    align-items: center;
+    
+  }@else if $type == 'wrap' {
+
+    flex-wrap: wrap;
+
+  }
+  
+}
