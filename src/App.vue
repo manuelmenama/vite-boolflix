@@ -26,7 +26,7 @@ export default {
       axios.get(store.apiUrl + type, {params: store.apiParams} )
       .then(result => {
 
-        store[type] = result.data.results
+        store[type] = result.data.results;
         console.log(result.data.results);
 
       })
@@ -39,8 +39,7 @@ export default {
   },
   mounted() {
     this.getSearchedMovie('movie');
-    this.getSearchedMovie('tv');
-    
+    this.getSearchedMovie('tv');    
   }
 }
 </script>

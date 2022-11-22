@@ -9,6 +9,7 @@ export const store = reactive ({
     language: 'it-IT'
   },
   movie: [],
-  tv: []
+  tv: [],
+  selectedType: ''
 
 });

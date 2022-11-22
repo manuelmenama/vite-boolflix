@@ -20,6 +20,13 @@ export default {
 
     <div class="input-container">
       <input type="text" v-model="store.apiParams.query">
+
+      <select name="type" id="type">
+        <option value="">All</option>
+        <option value="movie">Films</option>
+        <option value="tv">Serie TV</option>
+      </select>
+
       <button
       @click="$emit('startSearch')">Cerca</button>
     </div>
@@ -46,6 +53,10 @@ header{
     @include flex('center-between');
     input{
       width: 300px;
+      height: 2rem;
+      margin-right: 1rem;
+    }
+    select{
       height: 2rem;
       margin-right: 1rem;
     }
