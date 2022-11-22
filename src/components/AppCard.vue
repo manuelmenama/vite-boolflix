@@ -3,8 +3,15 @@ export default {
   name: 'AppCard',
   props: {
     movie: Object
+  },
+  computed:{
+    roundedVote() {
+      let baseFiveVote = this.movie.vote_average;
+      baseFiveVote = baseFiveVote / 2;
+      baseFiveVote = Math.round(baseFiveVote);
+      return baseFiveVote;
+    }
   }
-
 }
 </script>
 
@@ -12,7 +19,8 @@ export default {
 
   
   <li>
-    {{movie.title || movie.name}}
+    <h3>{{movie.title || movie.name}}</h3>
+    <img :src="'https://image.tmdb.org/t/p/' + 'w154' + movie.poster_path" alt="">
     <ul>
       <li>Lingua: 
         <span
@@ -28,7 +36,17 @@ export default {
           {{movie.original_language}}
         </span>
       </li>
-      <li>Voto: {{movie.vote_average}}</li>
+      <li>
+        
+        <span
+          v-for="(index) in 5"
+          :key="index">
+          <i
+            :class="[index <= roundedVote ? 'fa-solid' : 'fa-regular']"
+            class="fa-star"></i>
+        </span>
+      
+      </li>
     </ul>
   </li>
   
