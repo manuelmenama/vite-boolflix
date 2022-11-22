@@ -19,7 +19,7 @@ export default {
     <h1>LOGO</h1>
 
     <div class="input-container">
-      <input type="text" v-model="store.searchedQuery">
+      <input type="text" v-model="store.apiParams.query">
       <button
       @click="$emit('startSearch')">Cerca</button>
     </div>

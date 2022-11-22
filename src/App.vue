@@ -20,18 +20,13 @@ export default {
   },
   methods: {
 
-    getSearchedMovie() {
+    getSearchedMovie(type) {
       
 
-      axios.get(store.apiUrl, {
-        params: {
-          api_key: '83e8c5bc16f2790bc33e33ab7e0b420e',
-          query: store.searchedQuery
-        }
-      })
+      axios.get(store.apiUrl + type, {params: store.apiParams} )
       .then(result => {
 
-        store.reqestedResult = result.data.results
+        store[type] = result.data.results
         console.log(result.data.results);
 
       })
@@ -43,7 +38,9 @@ export default {
 
   },
   mounted() {
-    this.getSearchedMovie();
+    this.getSearchedMovie('movie');
+    this.getSearchedMovie('tv');
+    
   }
 }
 </script>
