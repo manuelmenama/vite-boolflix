@@ -67,17 +67,7 @@ export default {
           </ul>
         </div>
       </div>
-    </div> 
-    <!-- <div class="placeholder">
-      
-      <div class="img-container">
-        <img :src="'https://image.tmdb.org/t/p/' + 'w342' + movie.poster_path" alt="no cover found">
-
-
-
-      </div>
-      
-    </div> -->
+    </div>
   </li>
   
   

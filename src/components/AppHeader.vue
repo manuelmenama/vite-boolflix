@@ -19,7 +19,7 @@ export default {
     <h1>LOGO</h1>
 
     <div class="input-container">
-      <input type="text" v-model="store.apiParams.query">
+      <input type="text" v-model.trim="store.apiParams.query">
 
       <select name="type" id="type" v-model="store.selectedType">
         <option value="">All</option>
