@@ -34,12 +34,19 @@ export default {
         console.log(error);
       })
 
-    }
+    },
+    startSearch() {
+      store.movie = [];
+      store.tv = [];
 
+      if(store.selectedType===""){
+        this.getSearchedMovie('movie');
+        this.getSearchedMovie('tv');
+      }else this.getSearchedMovie(store.selectedType);
+    }
   },
   mounted() {
-    this.getSearchedMovie('movie');
-    this.getSearchedMovie('tv');    
+    this.startSearch();
   }
 }
 </script>
@@ -49,7 +56,7 @@ export default {
   <main>
 
     <AppHeader
-    @startSearch="getSearchedMovie()"/>
+    @startSearch="startSearch()"/>
 
     <AppWrapper />
 

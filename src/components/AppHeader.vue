@@ -21,7 +21,7 @@ export default {
     <div class="input-container">
       <input type="text" v-model="store.apiParams.query">
 
-      <select name="type" id="type">
+      <select name="type" id="type" v-model="store.selectedType">
         <option value="">All</option>
         <option value="movie">Films</option>
         <option value="tv">Serie TV</option>
