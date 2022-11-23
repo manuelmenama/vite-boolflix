@@ -20,7 +20,6 @@ export default {
   },
   methods: {
 
-
     getTrendyResult(type) {
       axios.get(store.apiTrendyUrl + type + '/week', {
         params: {
@@ -67,28 +66,42 @@ export default {
       this.getTrendyResult('movie');
       this.getTrendyResult('tv');
     },
-    getGenreList(type) {
-      axios.get(store.apiCastCall + 'genre/' + type + '/list', {
+    getGenreListMovie() {
+      axios.get(store.apiCastCall + 'genre/' + 'movie' + '/list', {
         params: {
           api_key: store.apiParams.api_key
         }
       })
       .then(result => {
-        store.genres = result.data.genres;
-        console.log(store.genres);
+        store.genresMovie = result.data.genres;
+        console.log(store.genresMovie);
       })
       .catch(error => {
         console.log(error);
       })
-    }
+    },
+    getGenreListTv() {
+      axios.get(store.apiCastCall + 'genre/' + 'tv' + '/list', {
+        params: {
+          api_key: store.apiParams.api_key
+        }
+      })
+      .then(result => {
+        store.genresTv = result.data.genres;
+        console.log(store.genresTv);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
   },
   mounted() {
     this.getTrendyResult('movie');
     this.getTrendyResult('tv');
 
     
-    this.getGenreList('movie');
-    this.getGenreList('tv');
+    this.getGenreListMovie();
+    this.getGenreListTv();
   }
 }
 </script>

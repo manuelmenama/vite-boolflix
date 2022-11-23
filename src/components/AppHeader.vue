@@ -22,7 +22,7 @@ export default {
       <input type="text" v-model.trim="store.apiParams.query">
 
       <select name="type" id="type" v-model="store.selectedType">
-        <option value="">All</option>
+        <option value="">Film/Serie TV</option>
         <option value="movie">Films</option>
         <option value="tv">Serie TV</option>
       </select>
@@ -56,9 +56,9 @@ header{
     input{
       width: 300px;
       height: 2rem;
-      margin-right: 1rem;
     }
     select{
+      margin-left: 1rem;
       height: 2rem;
     }
     button{

@@ -61,6 +61,9 @@ div.container{
 
   .movie-wrapper,
   .series-wrapper{
+    h2{
+      margin: 2rem 0 1rem 0;
+    }
     width: 100%;
     ul{
       width: calc(100%);

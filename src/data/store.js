@@ -14,7 +14,10 @@ export const store = reactive ({
   },
   movie: [],
   tv: [],
-  genres: [],
-  selectedType: ''
+  genresMovie: [],
+  genresTv: [],
+  allGenres: [],
+  selectedType: '',
+  selectedGenre: ''
 
 });

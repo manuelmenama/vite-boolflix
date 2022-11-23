@@ -48,9 +48,16 @@ export default {
       let genreArray = [];
         
       for(let i = 0; i < result.length; i++){
-        for(let c = 0; c < store.genres.length; c++){
-          if(result[i]===store.genres[c].id){
-            genreArray.push(store.genres[c].name)
+        for(let c = 0; c < store.genresMovie.length; c++){
+          if(result[i]===store.genresMovie[c].id){
+            genreArray.push(store.genresMovie[c].name)
+          }
+        }
+      }
+      for(let i = 0; i < result.length; i++){
+        for(let c = 0; c < store.genresTv.length; c++){
+          if(result[i]===store.genresTv[c].id&&!genreArray.includes(store.genresTv[c].name)){
+            genreArray.push(store.genresTv[c].name)
           }
         }
       }
@@ -58,7 +65,7 @@ export default {
       genreArray = genreArray.join(' - ')        
 
       return genreArray;
-    }
+    },
   },
   mounted() {
     this.getCastForCard(this.movie.media_type, this.movie.id);
@@ -71,13 +78,12 @@ export default {
 
   
   <li
-    v-if="movie.overview"
     class="main-container">
-
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <img :src="'https://image.tmdb.org/t/p/' + 'w342' + movie.poster_path" :alt="movie.title || movie.name">
+          <i v-if="!movie.poster_path" class="fa-solid fa-notdef"></i>
         </div>
         <div class="flip-card-back">
           <ul>
@@ -168,7 +174,8 @@ li.main-container{
 .flip-card {
   background-color: transparent;
   width: 342px;
-  height: 513px;
+  height: 500px;
+  overflow: hidden;
 }
 
 .flip-card-inner {
@@ -192,6 +199,14 @@ li.main-container{
 }
 
 .flip-card-front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  i {
+    margin-top: 1rem;
+    font-size: 5rem;
+  }
   background-color: #bbb;
   color: black;
 }
