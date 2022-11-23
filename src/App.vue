@@ -20,20 +20,6 @@ export default {
   },
   methods: {
 
-    getCastForCard(type, id) {
-
-      axios.get(store.apiCastCall + type + '/' + id + '/credits', {
-        params: {
-          api_key: store.apiParams.api_key
-        }
-      })
-      .then(result => {
-        console.log(result.data);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-    },
 
     getTrendyResult(type) {
       axios.get(store.apiTrendyUrl + type + '/week', {
@@ -80,11 +66,29 @@ export default {
 
       this.getTrendyResult('movie');
       this.getTrendyResult('tv');
+    },
+    getGenreList(type) {
+      axios.get(store.apiCastCall + 'genre/' + type + '/list', {
+        params: {
+          api_key: store.apiParams.api_key
+        }
+      })
+      .then(result => {
+        store.genres = result.data.genres;
+        console.log(store.genres);
+      })
+      .catch(error => {
+        console.log(error);
+      })
     }
   },
   mounted() {
     this.getTrendyResult('movie');
     this.getTrendyResult('tv');
+
+    
+    this.getGenreList('movie');
+    this.getGenreList('tv');
   }
 }
 </script>

@@ -14,7 +14,7 @@ export const store = reactive ({
   },
   movie: [],
   tv: [],
-  all: [],
+  genres: [],
   selectedType: ''
 
 });

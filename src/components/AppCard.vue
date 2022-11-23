@@ -1,10 +1,39 @@
 <script>
 
+import axios from 'axios'
+
+import {store} from "../data/store"
 
 export default {
   name: 'AppCard',
   props: {
     movie: Object
+  },
+  data() {
+    return {
+      store,
+      actors: []
+    }
+  },
+  methods: {
+    
+    getCastForCard(type, id) {
+
+      this.actors = [];
+
+      axios.get(store.apiCastCall + type + '/' + id + '/credits', {
+        params: {
+          api_key: store.apiParams.api_key
+        }
+      })
+      .then(result => {
+        this.actors = result.data.cast;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+
+    }
   },
   computed:{
     roundedVote() {
@@ -12,7 +41,26 @@ export default {
       baseFiveVote = baseFiveVote / 2;
       baseFiveVote = Math.round(baseFiveVote);
       return baseFiveVote;
+    },
+    genreAssociation() {
+
+      let result = this.movie.genre_ids
+
+
+      return result
+
+      /*let result = [];
+      this.movie.genre_ids.forEach(genreOfMovie => {
+
+        result = store.genres.filter(genre => genre.id.includes(genreOfMovie))
+      });
+      console.log(result);
+      return result */
     }
+  },
+  mounted() {
+    this.getCastForCard(this.movie.media_type, this.movie.id);
+
   }
 }
 </script>
@@ -33,7 +81,7 @@ export default {
           <ul>
             <h3>{{movie.title || movie.name}}</h3>
             <li>
-              <span>Lingua:</span>
+              <span>Lingua originale:</span>
               <span
                 v-if="movie.original_language==='it'">
                 <img src="../assets/img/Flag_of_Italy.svg" alt="">
@@ -51,9 +99,22 @@ export default {
               <span>
                 Cast:
               </span>
-              <p>
-                {{}}
-              </p>
+              <span
+                v-for="(act, index) in actors"
+                :key="index"
+                v-show="index <= 5">
+                {{act.name}}
+                <i v-if="index<5">- </i>
+              </span>
+              
+            </li>
+            <li>
+              <span>
+                Genere:
+              </span>
+              <span>
+                {{genreAssociation}}
+              </span>
             </li>
             <li>
               <span>Voto:</span>
