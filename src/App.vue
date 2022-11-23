@@ -20,6 +20,36 @@ export default {
   },
   methods: {
 
+    getCastForCard(type, id) {
+
+      axios.get(store.apiCastCall + type + '/' + id + '/credits', {
+        params: {
+          api_key: store.apiParams.api_key
+        }
+      })
+      .then(result => {
+        console.log(result.data);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
+
+    getTrendyResult(type) {
+      axios.get(store.apiTrendyUrl + type + '/week', {
+        params: {
+          api_key: store.apiParams.api_key,
+          language: 'it-IT'
+        }
+      })
+      .then(result => {
+        store[type] = result.data.results;
+        console.log(result.data.results);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
     getSearchedMovie(type) {
       
 
@@ -43,10 +73,18 @@ export default {
         this.getSearchedMovie('movie');
         this.getSearchedMovie('tv');
       }else this.getSearchedMovie(store.selectedType);
+    },
+    getTrendyFunct() {
+      store.movie = [];
+      store.tv = [];
+
+      this.getTrendyResult('movie');
+      this.getTrendyResult('tv');
     }
   },
   mounted() {
-    this.startSearch();
+    this.getTrendyResult('movie');
+    this.getTrendyResult('tv');
   }
 }
 </script>
@@ -56,7 +94,8 @@ export default {
   <main>
 
     <AppHeader
-    @startSearch="startSearch()"/>
+    @startSearch="startSearch()"
+    @getTrendy="getTrendyFunct()"/>
 
     <AppWrapper />
 

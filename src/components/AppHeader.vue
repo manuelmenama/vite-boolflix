@@ -29,6 +29,8 @@ export default {
 
       <button
       @click="$emit('startSearch')">Cerca</button>
+      <button
+      @click="$emit('getTrendy')">Get trendy!</button>
     </div>
 
   </header>
@@ -58,10 +60,10 @@ header{
     }
     select{
       height: 2rem;
-      margin-right: 1rem;
     }
     button{
       padding: 0.5rem 1rem;
+      margin-left: 1rem;
     }
   }
 }

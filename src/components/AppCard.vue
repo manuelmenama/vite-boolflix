@@ -48,6 +48,14 @@ export default {
               </span>
             </li>
             <li>
+              <span>
+                Cast:
+              </span>
+              <p>
+                {{}}
+              </p>
+            </li>
+            <li>
               <span>Voto:</span>
               <span
                 v-for="(index) in 5"
