@@ -44,18 +44,20 @@ export default {
     },
     genreAssociation() {
 
-      let result = this.movie.genre_ids
+      let result = this.movie.genre_ids;
+      let genreArray = [];
+        
+      for(let i = 0; i < result.length; i++){
+        for(let c = 0; c < store.genres.length; c++){
+          if(result[i]===store.genres[c].id){
+            genreArray.push(store.genres[c].name)
+          }
+        }
+      }
 
+      genreArray = genreArray.join(' - ')        
 
-      return result
-
-      /*let result = [];
-      this.movie.genre_ids.forEach(genreOfMovie => {
-
-        result = store.genres.filter(genre => genre.id.includes(genreOfMovie))
-      });
-      console.log(result);
-      return result */
+      return genreArray;
     }
   },
   mounted() {
