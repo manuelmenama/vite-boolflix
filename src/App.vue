@@ -21,6 +21,7 @@ export default {
   methods: {
 
     getTrendyResult(type) {
+      store.isLoaded = false;
       axios.get(store.apiTrendyUrl + type + '/week', {
         params: {
           api_key: store.apiParams.api_key,
@@ -34,6 +35,7 @@ export default {
       .catch(error => {
         console.log(error);
       })
+      store.isLoaded = true;
     },
     getSearchedMovie(type) {
       
@@ -48,7 +50,7 @@ export default {
       .catch(error => {
         console.log(error);
       })
-
+      store.isLoaded = true;
     },
     startSearch() {
       store.movie = [];
@@ -67,6 +69,7 @@ export default {
       this.getTrendyResult('tv');
     },
     getGenreListMovie() {
+      store.isLoaded = false;
       axios.get(store.apiCastCall + 'genre/' + 'movie' + '/list', {
         params: {
           api_key: store.apiParams.api_key
@@ -79,6 +82,7 @@ export default {
       .catch(error => {
         console.log(error);
       })
+      store.isLoaded = true;
     },
     getGenreListTv() {
       axios.get(store.apiCastCall + 'genre/' + 'tv' + '/list', {

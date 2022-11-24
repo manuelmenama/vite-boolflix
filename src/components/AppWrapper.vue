@@ -2,11 +2,15 @@
 
 import { store } from '../data/store';
 import AppCard from './AppCard.vue';
+import AppLoader from './partials/AppLoader.vue';
+
+import AppLoaderVue from './partials/AppLoader.vue';
 
 export default {
   name: 'AppWrapper',
   components: {
-    AppCard
+    AppCard,
+    AppLoader
   },
   data() {
     return {
@@ -21,7 +25,7 @@ export default {
 <div class="container">
 
   <div
-    v-if="store.movie.length"
+    v-if="store.movie.length&&store.isLoaded===true"
     class="movie-wrapper">
     <h2>Films</h2>
     <ul>
@@ -34,7 +38,7 @@ export default {
   </div>
 
   <div
-    v-if="store.tv.length"
+    v-if="store.tv.length&&store.isLoaded===true"
     class="series-wrapper">
     <h2>Serie TV</h2>
     <ul >
@@ -45,9 +49,9 @@ export default {
     </ul>
   </div>
 
-  <div v-if="!store.movie.length && !store.tv.length">
-    <h2>Inizia la tua ricerca...</h2>
-  </div>
+
+  <AppLoader
+    v-if="!isLoaded"/>
   
 </div>
   
@@ -58,6 +62,13 @@ export default {
 @use '../styles/partials/mixin' as *;
 
 div.container{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  
 
   .movie-wrapper,
   .series-wrapper{

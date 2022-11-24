@@ -18,6 +18,8 @@ export const store = reactive ({
   genresTv: [],
   allGenres: [],
   selectedType: '',
-  selectedGenre: ''
+  selectedGenre: '',
+  isLoaded: false
+
 
 });
